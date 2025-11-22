@@ -157,7 +157,6 @@ void CWnd::OnKey(HWND hWnd, UINT nVK, BOOL fDown, int nRepeat, UINT nFlags)
 			SendMessage(hParentWnd, WM_NEXTDLGCTL, wParam, lParam);
 			// Required for correct focus rect update
 			SendMessage(hParentWnd, WM_CHANGEUISTATE, MAKEWPARAM(UIS_CLEAR, UISF_HIDEFOCUS), 0);
-			SendMessage(hParentWnd, WM_UPDATEUISTATE, MAKEWPARAM(UIS_CLEAR, UISF_HIDEFOCUS), 0);
 			return;
 		}
 		assert(m_pOldProc);

@@ -90,11 +90,11 @@ A custom Tab handler should be installed for each control that breaks the tab or
 
 Control is subclassed. Then the WM_GETDLGCODE handler is implemented, which should return the DLGC_WANTTAB value. This means that the control wants to receive the tab key notifications and will process them itself.
 
-The control can use two window handle values: *prev* and *next*, which are NULL by default. If they are not NULL, the Tab handler should send WM_NEXTDLGCTL message to parent window with *next* value as wParam, if Tab was pressed, or with *prev* value as wParam, if Shift+Tab were pressed. lParam should have TRUE in the low word.
+The control can use two window handle values: *prev* and *next*, which are NULL by default. If they are not NULL, the Tab handler should send WM_NEXTDLGCTL message to the parent window with *next* value as wParam, if Tab was pressed, or with *prev* value as wParam, if Shift+Tab were pressed. lParam should have TRUE in the low word.
 
 If Tab was pressed and *next* is NULL, the Tab handler should send WM_NEXTDLGCTL with wParam=0. If Shift+Tab were pressed and *prev* is NULL, the Tab handler should send WM_NEXTDLGCTL with wParam=1. lParam should have FALSE in the low word.
 
-Also, WM_CHANGEUISTATE and WM_UPDATEUISTATE messages should be sent to update focus rect.
+Also, WM_CHANGEUISTATE message should be sent to the parent window to update focus rect.
 
 ## Conclusion
 
