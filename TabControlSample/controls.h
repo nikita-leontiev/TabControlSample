@@ -33,6 +33,7 @@ public:
 	void DisableKeyHandler();
 	void OnKey(HWND hWnd, UINT nVK, BOOL fDown, int nRepeat, UINT nFlags);
 	UINT OnGetDlgCode(HWND hWnd, LPMSG lpMsg);
+	static LRESULT CALLBACK KeyHandleSubclassProc(HWND hWnd, UINT nMsg, WPARAM wParam, LPARAM lParam);
 };
 
 class CDlg : public CWnd
@@ -41,6 +42,7 @@ public:
 	void Create(HINSTANCE hInstance, HWND hParentWnd, int nID, DLGPROC lpProc, LPARAM lParam);
 	void EnableTheme(DWORD dwFlags);
 	bool IsDialogMessage(MSG *pMsg);
+	static INT_PTR CALLBACK DefaultDlgProc(HWND, UINT, WPARAM, LPARAM);
 };
 
 class CButton : public CWnd
@@ -67,6 +69,7 @@ public:
 	void ExcludeSiblings(HWND hWnd, HDC hDC) const;
 	void ExcludeSibling(HWND hWnd);
 	void ClearExcludeSiblings();
+	static LRESULT CALLBACK TabControlSubclassProc(HWND hWnd, UINT nMsg, WPARAM wParam, LPARAM lParam);
 };
 
 class CTreeView : public CWnd

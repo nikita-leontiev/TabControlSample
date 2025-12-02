@@ -2,8 +2,6 @@
 #include "utils.h"
 #include "controls.h"
 
-LRESULT CALLBACK KeyHandleSubclassProc(HWND, UINT, WPARAM, LPARAM);
-
 CWnd::CWnd() :
 m_hWnd(NULL),
 m_pOldProc(NULL),
@@ -170,7 +168,7 @@ UINT CWnd::OnGetDlgCode(HWND hWnd, LPMSG lpMsg)
 	return FORWARD_WM_GETDLGCODE(hWnd, lpMsg, m_pOldProc) | DLGC_WANTTAB;
 }
 
-LRESULT CALLBACK KeyHandleSubclassProc(HWND hWnd, UINT nMsg, WPARAM wParam, LPARAM lParam)
+LRESULT CALLBACK CWnd::KeyHandleSubclassProc(HWND hWnd, UINT nMsg, WPARAM wParam, LPARAM lParam)
 {
 	CWnd *pWnd = reinterpret_cast<CWnd*>(GetWindowLongPtr(hWnd, GWLP_USERDATA));
 	if (!pWnd)
@@ -184,8 +182,6 @@ LRESULT CALLBACK KeyHandleSubclassProc(HWND hWnd, UINT nMsg, WPARAM wParam, LPAR
 
 	return CallWindowProc(pWnd -> GetOldProc(), hWnd, nMsg, wParam, lParam);
 }
-
-INT_PTR CALLBACK DefaultDlgProc(HWND, UINT, WPARAM, LPARAM);
 
 void CDlg::Create(HINSTANCE hInstance, HWND hParentWnd, int nID, DLGPROC lpProc, LPARAM lParam)
 {
@@ -204,7 +200,7 @@ bool CDlg::IsDialogMessage(MSG *pMsg)
 	return ::IsDialogMessage(m_hWnd, pMsg)?true:false;
 }
 
-INT_PTR CALLBACK DefaultDlgProc(HWND, UINT, WPARAM, LPARAM)
+INT_PTR CALLBACK CDlg::DefaultDlgProc(HWND, UINT, WPARAM, LPARAM)
 {
 	return FALSE;
 }
@@ -218,8 +214,6 @@ bool CButton::IsChecked()
 {
 	return Button_GetCheck(m_hWnd) == BST_CHECKED;
 }
-
-LRESULT CALLBACK TabControlSubclassProc(HWND, UINT, WPARAM, LPARAM);
 
 CTabControl::CTabControl() :
 CWnd()
@@ -289,7 +283,7 @@ void CTabControl::ClearExcludeSiblings()
 	m_exclude.clear();
 }
 
-LRESULT CALLBACK TabControlSubclassProc(HWND hWnd, UINT nMsg, WPARAM wParam, LPARAM lParam)
+LRESULT CALLBACK CTabControl::TabControlSubclassProc(HWND hWnd, UINT nMsg, WPARAM wParam, LPARAM lParam)
 {
 	CTabControl *pTabControl = reinterpret_cast<CTabControl*>(GetWindowLongPtr(hWnd, GWLP_USERDATA));
 	if (!pTabControl)

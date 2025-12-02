@@ -69,4 +69,6 @@ public:
 	static void LoadTreeItems(CTreeView & tree_view, size_t first, size_t count);
 	static HWNDMap & GetFocusMap();
 	static HWNDMap & GetReverseFocusMap();
+	static INT_PTR CALLBACK DialogProc(HWND hWnd, UINT nMsg, WPARAM wParam, LPARAM lParam);
+	static LRESULT CALLBACK CBTProc(int nCode, WPARAM wParam, LPARAM lParam);
 };

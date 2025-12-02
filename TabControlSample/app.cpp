@@ -2,9 +2,6 @@
 #include "utils.h"
 #include "app.h"
 
-INT_PTR CALLBACK DialogProc(HWND, UINT, WPARAM, LPARAM);
-LRESULT CALLBACK CBTProc(int, WPARAM, LPARAM);
-
 HWNDMap CApp::m_focus_map;
 HWNDMap CApp::m_reverse_focus_map;
 
@@ -357,7 +354,7 @@ HWNDMap & CApp::GetReverseFocusMap()
 	return m_reverse_focus_map;
 }
 
-INT_PTR CALLBACK DialogProc(HWND hWnd, UINT nMsg, WPARAM wParam, LPARAM lParam)
+INT_PTR CALLBACK CApp::DialogProc(HWND hWnd, UINT nMsg, WPARAM wParam, LPARAM lParam)
 {
 	if (nMsg == WM_INITDIALOG)
 		SetWindowLongPtr(hWnd, GWLP_USERDATA, lParam);
@@ -377,7 +374,7 @@ INT_PTR CALLBACK DialogProc(HWND hWnd, UINT nMsg, WPARAM wParam, LPARAM lParam)
 	return FALSE;
 }
 
-LRESULT CALLBACK CBTProc(int nCode, WPARAM wParam, LPARAM lParam)
+LRESULT CALLBACK CApp::CBTProc(int nCode, WPARAM wParam, LPARAM lParam)
 {
 	if (nCode == HCBT_SETFOCUS)
 	{
