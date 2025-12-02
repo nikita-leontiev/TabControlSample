@@ -65,7 +65,7 @@ public:
 	void RemoveTabHandle();
 	void LoadTabs();
 	void CreateTabDialog(CDlg & dialog, bool fShow, int nIndex);
-	void SetupTreeView(CTreeView & treeview, const RECT *pRect, int nIndex);
+	void SetupTreeView(CTreeView & tree_view, const RECT *pRect, int nIndex);
 	static void LoadTreeItems(CTreeView & tree_view, size_t first, size_t count);
 	static HWNDMap & GetFocusMap();
 	static HWNDMap & GetReverseFocusMap();
