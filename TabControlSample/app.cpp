@@ -41,7 +41,7 @@ int CApp::Main(HINSTANCE hInstance)
 			DispatchMessage(&msg);
 		}
 	}
-	return msg.wParam;
+	return static_cast<int>(msg.wParam);
 }
 
 INT_PTR CApp::OnInit(HWND hWnd, HWND hWndFocus, LPARAM lParam)
