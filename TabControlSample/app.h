@@ -49,7 +49,7 @@ public:
 	CApp();
 
 	int Main(HINSTANCE hInstance);
-	INT_PTR OnInit(HWND hWnd, HWND hWndFocus, LPARAM lParam);
+	INT_PTR OnInitDialog(HWND hWnd, HWND hWndFocus, LPARAM lParam);
 	void OnClose(HWND hWnd);
 	static void OnDestroy(HWND hWnd);
 	void OnCommand(HWND hWnd, int nID, HWND hCtrl, UINT nNotify);

@@ -44,7 +44,7 @@ int CApp::Main(HINSTANCE hInstance)
 	return static_cast<int>(msg.wParam);
 }
 
-INT_PTR CApp::OnInit(HWND hWnd, HWND hWndFocus, LPARAM lParam)
+INT_PTR CApp::OnInitDialog(HWND hWnd, HWND hWndFocus, LPARAM lParam)
 {
 	UNUSED(hWndFocus);
 	UNUSED(lParam);
@@ -365,7 +365,7 @@ INT_PTR CALLBACK CApp::DialogProc(HWND hWnd, UINT nMsg, WPARAM wParam, LPARAM lP
 
 	switch (nMsg)
 	{
-		HANDLE_MSG(hWnd, WM_INITDIALOG, pApp -> OnInit);
+		HANDLE_MSG(hWnd, WM_INITDIALOG, pApp -> OnInitDialog);
 		HANDLE_MSG(hWnd, WM_CLOSE, pApp -> OnClose);
 		HANDLE_MSG(hWnd, WM_DESTROY, pApp -> OnDestroy);
 		HANDLE_MSG(hWnd, WM_COMMAND, pApp -> OnCommand);
